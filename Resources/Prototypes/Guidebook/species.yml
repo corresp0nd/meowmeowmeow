@@ -18,6 +18,7 @@
     - Vulpkanin
     - Rodentia
     - IPC
+    - Thaven
 
 - type: guideEntry
   id: Arachnid
@@ -89,3 +90,8 @@
   id: IPC
   name: species-name-ipc
   text: "/ServerInfo/Guidebook/Mobs/IPCs.xml"
+
+- type: guideEntry
+  id: Thaven
+  name: Thaven
+  text: "/ServerInfo/Guidebook/Mobs/SpElf.xml"
