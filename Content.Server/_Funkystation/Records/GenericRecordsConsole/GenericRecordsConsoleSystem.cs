@@ -2,20 +2,17 @@
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Server._Funkystation.Records;
 using Content.Server.Station.Systems;
-using Content.Server.StationRecords.Systems;
 using Content.Server.StationRecords;
-using Content.Shared._Funkystation.Medical.MedicalRecords;
-using Content.Shared.CriminalRecords;
-using Content.Shared.Security;
-using Content.Shared.StationRecords;
+using Content.Server.StationRecords.Systems;
 using Content.Shared._Funkystation.Records;
+using Content.Shared._Funkystation.Records.GenericRecordsConsole;
+using Content.Shared.StationRecords;
 using Robust.Server.GameObjects;
 
-namespace Content.Server._Funkystation.Medical.MedicalRecords;
+namespace Content.Server._Funkystation.Records.GenericRecordsConsole;
 
-public sealed class MedicalRecordsConsoleSystem : EntitySystem
+public sealed class GenericRecordsConsoleSystem : EntitySystem
 {
     [Dependency] private readonly CharacterRecordsSystem _characterRecords = default!;
     [Dependency] private readonly StationSystem _station = default!;
@@ -25,31 +22,31 @@ public sealed class MedicalRecordsConsoleSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<MedicalRecordsConsoleComponent, CharacterRecordsModifiedEvent>((uid, component, _) =>
+        SubscribeLocalEvent<GenericRecordsConsoleComponent, CharacterRecordsModifiedEvent>((uid, component, _) =>
             UpdateUi(uid, component));
 
-        Subs.BuiEvents<MedicalRecordsConsoleComponent>(MedicalRecordsConsoleKey.Key,
+        Subs.BuiEvents<GenericRecordsConsoleComponent>(GenericRecordsConsoleKey.Key,
             subr =>
             {
                 subr.Event<BoundUIOpenedEvent>((uid, component, _) => UpdateUi(uid, component));
-                subr.Event<MedicalRecordsConsoleSelectMsg>(OnKeySelect);
-                subr.Event<MedicalRecordsConsoleFilterMsg>(OnFilterApplied);
+                subr.Event<GenericRecordsConsoleSelectMsg>(OnKeySelect);
+                subr.Event<GenericRecordsConsoleFilterMsg>(OnFilterApplied);
             });
     }
 
-    private void OnFilterApplied(Entity<MedicalRecordsConsoleComponent> ent, ref MedicalRecordsConsoleFilterMsg msg)
+    private void OnFilterApplied(Entity<GenericRecordsConsoleComponent> ent, ref GenericRecordsConsoleFilterMsg msg)
     {
         ent.Comp.Filter = msg.Filter;
         UpdateUi(ent);
     }
 
-    private void OnKeySelect(Entity<MedicalRecordsConsoleComponent> ent, ref MedicalRecordsConsoleSelectMsg msg)
+    private void OnKeySelect(Entity<GenericRecordsConsoleComponent> ent, ref GenericRecordsConsoleSelectMsg msg)
     {
         ent.Comp.SelectedIndex = msg.CharacterRecordKey;
         UpdateUi(ent);
     }
 
-    private void UpdateUi(EntityUid entity, MedicalRecordsConsoleComponent? console = null)
+    private void UpdateUi(EntityUid entity, GenericRecordsConsoleComponent? console = null)
     {
         if (!Resolve(entity, ref console))
             return;
@@ -60,7 +57,7 @@ public sealed class MedicalRecordsConsoleSystem : EntitySystem
 
         var characterRecords = _characterRecords.QueryRecords(station.Value);
         // Get the name and station records key display from the list of records
-        var names = new Dictionary<uint, MedicalRecordsConsoleState.CharacterInfo>();
+        var names = new Dictionary<uint, GenericRecordsConsoleState.CharacterInfo>();
         foreach (var (i, r) in characterRecords)
         {
             var nameJob = $"{r.Name} ({r.JobTitle})";
@@ -78,7 +75,7 @@ public sealed class MedicalRecordsConsoleSystem : EntitySystem
                     $"We somehow have duplicate character record keys, NetEntity: {i}, Entity: {entity}, Character Name: {r.Name}");
             }
 
-            names[i] = new MedicalRecordsConsoleState.CharacterInfo
+            names[i] = new GenericRecordsConsoleState.CharacterInfo
                 { CharacterDisplayName = nameJob, StationRecordKey = r.StationRecordsKey };
         }
 
@@ -88,7 +85,7 @@ public sealed class MedicalRecordsConsoleSystem : EntitySystem
                 : value;
 
         SendState(entity,
-            new MedicalRecordsConsoleState
+            new GenericRecordsConsoleState
             {
                 CharacterList = names,
                 SelectedIndex = console.SelectedIndex,
@@ -97,9 +94,9 @@ public sealed class MedicalRecordsConsoleSystem : EntitySystem
             });
     }
 
-    private void SendState(EntityUid entity, MedicalRecordsConsoleState state)
+    private void SendState(EntityUid entity, GenericRecordsConsoleState state)
     {
-        _ui.SetUiState(entity, MedicalRecordsConsoleKey.Key, state);
+        _ui.SetUiState(entity, GenericRecordsConsoleKey.Key, state);
     }
 
     /// <summary>

@@ -3,20 +3,31 @@
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Shared._Funkystation.Records;
 using Content.Shared.StationRecords;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Funkystation.Medical.MedicalRecords;
+namespace Content.Shared._Funkystation.Records.GenericRecordsConsole;
 
 [Serializable, NetSerializable]
-public enum MedicalRecordsConsoleKey : byte
+public enum GenericRecordsConsoleKey : byte
 {
     Key
 }
 
 [Serializable, NetSerializable]
-public sealed class MedicalRecordsConsoleState : BoundUserInterfaceState
+public enum RecordConsoleType : byte
+{
+    Security,
+    Medical,
+    Employment,
+    /// <summary>
+    /// Admin console has the functionality of all other types and has some additional admin related functionality
+    /// </summary>
+    Admin
+}
+
+[Serializable, NetSerializable]
+public sealed class GenericRecordsConsoleState : BoundUserInterfaceState
 {
     [Serializable, NetSerializable]
     public struct CharacterInfo
@@ -24,6 +35,8 @@ public sealed class MedicalRecordsConsoleState : BoundUserInterfaceState
         public string CharacterDisplayName;
         public uint? StationRecordKey;
     }
+
+    public RecordConsoleType ConsoleType { get; set; }
 
     /// <summary>
     /// Character selected in the console
@@ -44,23 +57,23 @@ public sealed class MedicalRecordsConsoleState : BoundUserInterfaceState
 }
 
 [Serializable, NetSerializable]
-public sealed class MedicalRecordsConsoleFilterMsg : BoundUserInterfaceMessage
+public sealed class GenericRecordsConsoleFilterMsg : BoundUserInterfaceMessage
 {
     public readonly StationRecordsFilter? Filter;
 
-    public MedicalRecordsConsoleFilterMsg(StationRecordsFilter? filter)
+    public GenericRecordsConsoleFilterMsg(StationRecordsFilter? filter)
     {
         Filter = filter;
     }
 }
 
 [Serializable, NetSerializable]
-public sealed class MedicalRecordsConsoleSelectMsg : BoundUserInterfaceMessage
+public sealed class GenericRecordsConsoleSelectMsg : BoundUserInterfaceMessage
 {
     public readonly uint? CharacterRecordKey;
 
-    public MedicalRecordsConsoleSelectMsg(uint? medicalRecordsKey)
+    public GenericRecordsConsoleSelectMsg(uint? recordsKey)
     {
-        CharacterRecordKey = medicalRecordsKey;
+        CharacterRecordKey = recordsKey;
     }
 }

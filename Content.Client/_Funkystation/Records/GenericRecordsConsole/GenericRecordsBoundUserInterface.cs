@@ -2,23 +2,23 @@
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Client._Funkystation.Medical.MedicalRecordsConsole.UI;
-using Content.Shared._Funkystation.Medical.MedicalRecords;
+using Content.Client._Funkystation.Records.GenericRecordsConsole.UI;
+using Content.Shared._Funkystation.Records.GenericRecordsConsole;
 using Content.Shared.StationRecords;
 using JetBrains.Annotations;
 
-namespace Content.Client._Funkystation.Medical.MedicalRecordsConsole;
+namespace Content.Client._Funkystation.Records.GenericRecordsConsole;
 
 [UsedImplicitly]
-public sealed class MedicalRecordsBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
-    [ViewVariables] private MedicalRecordsMenu? _menu;
+    [ViewVariables] private GenericRecordsMenu? _menu;
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
 
-        if (state is not MedicalRecordsConsoleState cast)
+        if (state is not GenericRecordsConsoleState cast)
             return;
 
         _menu?.UpdateState(cast);
@@ -28,19 +28,19 @@ public sealed class MedicalRecordsBoundUserInterface(EntityUid owner, Enum uiKey
     {
         base.Open();
 
-        _menu = new MedicalRecordsMenu();
+        _menu = new GenericRecordsMenu();
         _menu.OnClose += Close;
 
         _menu.OnListingItemSelected += meta =>
         {
-            SendMessage(new MedicalRecordsConsoleSelectMsg(meta?.CharacterRecordKey));
+            SendMessage(new GenericRecordsConsoleSelectMsg(meta?.CharacterRecordKey));
         };
 
         _menu.OnFiltersChanged += (ty, txt) =>
         {
             SendMessage(txt == null
-                ? new MedicalRecordsConsoleFilterMsg(null)
-                : new MedicalRecordsConsoleFilterMsg(new StationRecordsFilter(ty, txt)));
+                ? new GenericRecordsConsoleFilterMsg(null)
+                : new GenericRecordsConsoleFilterMsg(new StationRecordsFilter(ty, txt)));
         };
 
         _menu.OpenCentered();

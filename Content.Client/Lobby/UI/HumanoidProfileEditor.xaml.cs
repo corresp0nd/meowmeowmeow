@@ -71,6 +71,7 @@
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using Content.Client._Funkystation.Records.Lobby.UI;
 using Content.Client.Humanoid;
 using Content.Client.Lobby.UI.Loadouts;
 using Content.Client.Lobby.UI.Roles;
@@ -102,7 +103,6 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 // Begin CD - Character Records
-using Content.Client._Funkystation.Medical.Records.UI;
 using Content.Shared._Funkystation.Records;
 // End CD - Character Records
 

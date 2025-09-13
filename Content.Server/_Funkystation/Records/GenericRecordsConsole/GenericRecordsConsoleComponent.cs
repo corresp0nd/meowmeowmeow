@@ -2,17 +2,20 @@
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Shared._Funkystation.Medical.MedicalRecords;
+using Content.Shared._Funkystation.Records.GenericRecordsConsole;
 using Content.Shared.StationRecords;
 
-namespace Content.Server._Funkystation.Medical.MedicalRecords;
+namespace Content.Server._Funkystation.Records.GenericRecordsConsole;
 
 [RegisterComponent]
-public sealed partial class MedicalRecordsConsoleComponent : Component
+public sealed partial class GenericRecordsConsoleComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
     public uint? SelectedIndex { get; set; }
 
     [ViewVariables(VVAccess.ReadOnly)]
     public StationRecordsFilter? Filter;
+
+    [DataField(required: true), ViewVariables(VVAccess.ReadOnly)]
+    public RecordConsoleType ConsoleType;
 }
