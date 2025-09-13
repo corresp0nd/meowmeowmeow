@@ -95,6 +95,7 @@
                         VerticalExpand="True">
                         <BoxContainer Orientation="Vertical">
 
+                            <BoxContainer Name="RecordContainerGeneral">
                             <!--  general info header  -->
                             <BoxContainer Margin="5" Orientation="Horizontal">
                                 <Label
@@ -163,7 +164,7 @@
                                         Text="{Loc 'funky-medical-records-weight-title'}" />
                                     <Label Margin="5,0" Name="RecordContainerWeight" />
                                 </BoxContainer>
-                                <BoxContainer Margin="5" Orientation="Horizontal">
+                                <BoxContainer Margin="5" Orientation="Horizontal" Name="WorkAuthContainer">
                                     <Label
                                         Name="WorkAuth"
                                         StyleClasses="LabelSecondaryColor"
@@ -199,7 +200,13 @@
                             </BoxContainer>
 
                             <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
+                            </BoxContainer>
 
+                            <BoxContainer Name="RecordContainerEmployment">
+                                <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
+                            </BoxContainer>
+
+                            <BoxContainer Name="RecordContainerMedical">
                             <!--  medical info header  -->
                             <BoxContainer Margin="5" Orientation="Horizontal">
                                 <Label
@@ -283,6 +290,17 @@
                                     Orientation="Vertical">
                                     <RichTextLabel Name="AutopsyUndocumented" Text="This patient has not received an autopsy, or their autopsy has not been documented." />
                                 </BoxContainer>
+                            </BoxContainer>
+                            </BoxContainer>
+
+                            <BoxContainer Name="RecordContainerSecurity">
+                                <BoxContainer Orientation="Horizontal" Margin="5 5 5 5">
+                                    <Label Text="{Loc 'criminal-records-console-status'}" FontColorOverride="DarkGray"/>
+                                    <OptionButton Name="StatusOptionButton"/>
+                                    <Control MinWidth="5"/>
+                                    <Label Name="RecordContainerWantedReason" Visible="False" />
+                                </BoxContainer>
+                                <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
                             </BoxContainer>
 
                         </BoxContainer>

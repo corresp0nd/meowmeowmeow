@@ -4,6 +4,8 @@
 
 using Content.Client._Funkystation.Records.GenericRecordsConsole.UI;
 using Content.Shared._Funkystation.Records.GenericRecordsConsole;
+using Content.Shared.CriminalRecords;
+using Content.Shared.CriminalRecords.Components;
 using Content.Shared.StationRecords;
 using JetBrains.Annotations;
 
@@ -21,6 +23,12 @@ public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey
         if (state is not GenericRecordsConsoleState cast)
             return;
 
+        if (_menu?.IsSecurity() == true)
+        {
+            var comp = EntMan.GetComponent<CriminalRecordsConsoleComponent>(Owner);
+            _menu!.DialogMaxLength = comp.MaxStringLength;
+        }
+
         _menu?.UpdateState(cast);
     }
 
@@ -34,6 +42,20 @@ public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey
         _menu.OnListingItemSelected += meta =>
         {
             SendMessage(new GenericRecordsConsoleSelectMsg(meta?.CharacterRecordKey));
+
+            // If we are a security records console, we also need to inform the criminal records
+            // system of our state.
+            if (_menu.IsSecurity() && meta?.StationRecordKey != null)
+            {
+                SendMessage(new SelectStationRecord(meta.Value.StationRecordKey.Value));
+                _menu.SetSecurityStatusEnabled(true);
+            }
+            else
+            {
+                // If the user does not have criminal records for some reason, we should not be able
+                // to set their wanted status
+                _menu.SetSecurityStatusEnabled(false);
+            }
         };
 
         _menu.OnFiltersChanged += (ty, txt) =>
@@ -43,9 +65,13 @@ public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey
                 : new GenericRecordsConsoleFilterMsg(new StationRecordsFilter(ty, txt)));
         };
 
+        _menu.OnSetSecurityStatus += (status, reason) =>
+        {
+            SendMessage(new CriminalRecordChangeStatus(status, reason));
+        };
+
         _menu.OpenCentered();
     }
-
 
     protected override void Dispose(bool disposing)
     {

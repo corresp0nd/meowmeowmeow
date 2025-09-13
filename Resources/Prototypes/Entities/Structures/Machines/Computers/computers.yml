@@ -509,13 +509,14 @@
     board: MedicalRecordsComputerCircuitboard
   - type: GenericRecordsConsole # begin funky
     consoleType: Medical
+  - type: CriminalRecordsConsole
   - type: ActivatableUI
     singleUser: true
-    key: enum.MedicalRecordsConsoleKey.Key
+    key: enum.GenericRecordsConsoleKey.Key
   - type: UserInterface
     interfaces:
-      enum.MedicalRecordsConsoleKey.Key:
-        type: MedicalRecordsBoundUserInterface # end funky
+      enum.GenericRecordsConsoleKey.Key:
+        type: GenericRecordsBoundUserInterface # end funky
 
 - type: entity
   parent: BaseComputerAiAccess
