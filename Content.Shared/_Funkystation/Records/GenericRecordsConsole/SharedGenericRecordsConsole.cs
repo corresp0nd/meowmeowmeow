@@ -36,6 +36,9 @@ public sealed class GenericRecordsConsoleState : BoundUserInterfaceState
         public uint? StationRecordKey;
     }
 
+    /// <summary>
+    /// The current type of the console: medical, security, employment, etc
+    /// </summary>
     public RecordConsoleType ConsoleType { get; set; }
 
     /// <summary>

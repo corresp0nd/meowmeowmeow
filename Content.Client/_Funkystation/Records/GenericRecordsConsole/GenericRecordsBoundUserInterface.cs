@@ -23,12 +23,7 @@ public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey
         if (state is not GenericRecordsConsoleState cast)
             return;
 
-        if (_menu?.IsSecurity() == true)
-        {
-            var comp = EntMan.GetComponent<CriminalRecordsConsoleComponent>(Owner);
-            _menu!.DialogMaxLength = comp.MaxStringLength;
-        }
-
+        // set maxlen here ?
         _menu?.UpdateState(cast);
     }
 

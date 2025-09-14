@@ -95,7 +95,7 @@
                         VerticalExpand="True">
                         <BoxContainer Orientation="Vertical">
 
-                            <BoxContainer Name="RecordContainerGeneral">
+                            <BoxContainer Name="RecordContainerGeneral" Orientation="Vertical">
                             <!--  general info header  -->
                             <BoxContainer Margin="5" Orientation="Horizontal">
                                 <Label
@@ -293,7 +293,7 @@
                             </BoxContainer>
                             </BoxContainer>
 
-                            <BoxContainer Name="RecordContainerSecurity">
+                            <BoxContainer Name="RecordContainerSecurity" Visible="False">
                                 <BoxContainer Orientation="Horizontal" Margin="5 5 5 5">
                                     <Label Text="{Loc 'criminal-records-console-status'}" FontColorOverride="DarkGray"/>
                                     <OptionButton Name="StatusOptionButton"/>

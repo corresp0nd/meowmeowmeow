@@ -509,7 +509,6 @@
     board: MedicalRecordsComputerCircuitboard
   - type: GenericRecordsConsole # begin funky
     consoleType: Medical
-  - type: CriminalRecordsConsole
   - type: ActivatableUI
     singleUser: true
     key: enum.GenericRecordsConsoleKey.Key

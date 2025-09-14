@@ -223,7 +223,6 @@ public sealed partial class GenericRecordsMenu : FancyWindow
         RecordContainerMedical.Visible = false;
         RecordContainerSecurity.Visible = false;
 
-        // nasty looking
         switch (_type)
         {
             case RecordConsoleType.Employment:
@@ -457,7 +456,7 @@ public sealed partial class GenericRecordsMenu : FancyWindow
 
     public bool IsSecurity()
     {
-        return _type == RecordConsoleType.Security || _type == RecordConsoleType.Admin;
+        return _type is RecordConsoleType.Security or RecordConsoleType.Admin;
     }
 
     public void SetSecurityStatusEnabled(bool setting)
