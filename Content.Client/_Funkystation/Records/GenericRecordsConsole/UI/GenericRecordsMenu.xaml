@@ -257,20 +257,6 @@
                                 Orientation="Vertical">
                                 <BoxContainer Margin="5" Orientation="Horizontal">
                                     <Label
-                                        Name="FingerprintsTitle"
-                                        StyleClasses="LabelSecondaryColor"
-                                        Text="{Loc 'funky-medical-records-fingerprints-title'}" />
-                                    <Label Margin="5,0" Name="RecordContainerFingerprints" />
-                                </BoxContainer>
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        Name="DNATitle"
-                                        StyleClasses="LabelSecondaryColor"
-                                        Text="{Loc 'funky-medical-records-dna-title'}" />
-                                    <Label Margin="5,0" Name="RecordContainerDNA" />
-                                </BoxContainer>
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
                                         Name="BloodTypeTitle"
                                         StyleClasses="LabelSecondaryColor"
                                         Text="{Loc 'funky-medical-records-blood-title'}" />
@@ -316,12 +302,54 @@
                             </BoxContainer>
 
                             <BoxContainer Name="RecordContainerSecurity" Orientation="Vertical">
-                                <BoxContainer Orientation="Horizontal" Margin="5 5 5 5">
-                                    <Label Text="{Loc 'criminal-records-console-status'}" FontColorOverride="DarkGray"/>
-                                    <OptionButton Name="StatusOptionButton"/>
-                                    <Control MinWidth="5"/>
-                                    <Label Name="RecordContainerWantedReason" Visible="False" />
+                                <!--  header  -->
+                                <BoxContainer Margin="5" Orientation="Horizontal">
+                                    <Label
+                                        HorizontalAlignment="Left"
+                                        HorizontalExpand="True"
+                                        Text="{Loc 'funky-medical-records-medical-info'}" />
+                                    <BoxContainer Orientation="Horizontal" SetHeight="24">
+                                        <Button
+                                            Margin="-1"
+                                            Name="SIButton"
+                                            SetWidth="27"
+                                            StyleClasses="ButtonSquare">
+                                            <TextureRect
+                                                Margin="-8,-2,0,0"
+                                                Name="SIButtonArrow"
+                                                TexturePath="/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png"
+                                                VerticalAlignment="Center" />
+                                        </Button>
+                                    </BoxContainer>
                                 </BoxContainer>
+
+                                <BoxContainer
+                                    Margin="20,0"
+                                    Name="SecurityInformation"
+                                    Orientation="Vertical">
+                                    <BoxContainer Margin="5" Orientation="Horizontal">
+                                        <Label
+                                            Name="FingerprintsTitle"
+                                            StyleClasses="LabelSecondaryColor"
+                                            Text="{Loc 'funky-medical-records-fingerprints-title'}" />
+                                        <Label Margin="5,0" Name="RecordContainerFingerprints" />
+                                    </BoxContainer>
+                                    <BoxContainer Margin="5" Orientation="Horizontal">
+                                        <Label
+                                            Name="DNATitle"
+                                            StyleClasses="LabelSecondaryColor"
+                                            Text="{Loc 'funky-medical-records-dna-title'}" />
+                                        <Label Margin="5,0" Name="RecordContainerDNA" />
+                                    </BoxContainer>
+
+                                    <BoxContainer Orientation="Horizontal" Margin="5 5 5 5">
+                                        <Label Text="{Loc 'criminal-records-console-status'}" FontColorOverride="DarkGray"/>
+                                        <OptionButton Name="StatusOptionButton"/>
+                                        <Control MinWidth="5"/>
+                                        <Label Name="RecordContainerWantedReason" Visible="False" />
+                                    </BoxContainer>
+                                </BoxContainer>
+
                                 <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
                             </BoxContainer>
 

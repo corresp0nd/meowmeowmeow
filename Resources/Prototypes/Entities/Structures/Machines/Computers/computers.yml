@@ -523,15 +523,24 @@
   name: criminal records computer
   description: This can be used to check criminal records. Only security can modify them.
   components:
-  - type: CriminalRecordsConsole
+  - type: GenericRecordsConsole # begin funky
+    consoleType: Security
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.GenericRecordsConsoleKey.Key
   - type: UserInterface
     interfaces:
-      enum.CriminalRecordsConsoleKey.Key:
-        type: CriminalRecordsConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: ActivatableUI
-    key: enum.CriminalRecordsConsoleKey.Key
+      enum.GenericRecordsConsoleKey.Key:
+        type: GenericRecordsBoundUserInterface
+  - type: CriminalRecordsConsole
+#  - type: UserInterface
+#    interfaces:
+#      enum.CriminalRecordsConsoleKey.Key:
+#        type: CriminalRecordsConsoleBoundUserInterface
+#      enum.WiresUiKey.Key:
+#        type: WiresBoundUserInterface
+#  - type: ActivatableUI
+#    key: enum.CriminalRecordsConsoleKey.Key # end funky
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]

@@ -3,6 +3,7 @@
 //
 // SPDX-License-Identifier: MIT
 
+using Content.Shared.Security;
 using Content.Shared.StationRecords;
 using Robust.Shared.Serialization;
 
@@ -57,6 +58,11 @@ public sealed class GenericRecordsConsoleState : BoundUserInterfaceState
     public FullCharacterRecords? SelectedRecord { get; set; } = null;
 
     public StationRecordsFilter? Filter { get; set; } = null;
+
+    /// <summary>
+    /// Security status of the selected record
+    /// </summary>
+    public (SecurityStatus, string?)? SelectedSecurityStatus = null;
 }
 
 [Serializable, NetSerializable]

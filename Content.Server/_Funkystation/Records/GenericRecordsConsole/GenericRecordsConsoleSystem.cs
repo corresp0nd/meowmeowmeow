@@ -7,6 +7,8 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared._Funkystation.Records;
 using Content.Shared._Funkystation.Records.GenericRecordsConsole;
+using Content.Shared.CriminalRecords;
+using Content.Shared.Security;
 using Content.Shared.StationRecords;
 using Robust.Server.GameObjects;
 
@@ -16,6 +18,7 @@ public sealed class GenericRecordsConsoleSystem : EntitySystem
 {
     [Dependency] private readonly CharacterRecordsSystem _characterRecords = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
@@ -84,6 +87,18 @@ public sealed class GenericRecordsConsoleSystem : EntitySystem
                 ? null
                 : value;
 
+        (SecurityStatus, string?)? securityStatus = null;
+
+        // If we need the character's security status, gather it from the criminal records
+        if ((console.ConsoleType == RecordConsoleType.Admin ||
+             console.ConsoleType == RecordConsoleType.Security)
+            && record?.StationRecordsKey != null)
+        {
+            var key = new StationRecordKey(record.StationRecordsKey.Value, station.Value);
+            if (_records.TryGetRecord<CriminalRecord>(key, out var entry))
+                securityStatus = (entry.Status, entry.Reason);
+        }
+
         SendState(entity,
             new GenericRecordsConsoleState
             {
@@ -92,6 +107,7 @@ public sealed class GenericRecordsConsoleSystem : EntitySystem
                 SelectedRecord = record,
                 Filter = console.Filter,
                 ConsoleType = console.ConsoleType,
+                SelectedSecurityStatus = securityStatus,
             });
     }
 

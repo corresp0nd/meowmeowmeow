@@ -28,6 +28,8 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Security.Components;
 using System.Linq;
+using Content.Server._Funkystation.Records;
+using Content.Shared._Funkystation.Records.GenericRecordsConsole;
 using Content.Shared.Roles.Jobs;
 
 namespace Content.Server.CriminalRecords.Systems;
@@ -50,6 +52,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         SubscribeLocalEvent<CriminalRecordsConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<CriminalRecordsConsoleComponent, AfterGeneralRecordCreatedEvent>(UpdateUserInterface);
 
+        /* We disable the wizden Criminal Records computer and reuse some of the Bui events
         Subs.BuiEvents<CriminalRecordsConsoleComponent>(CriminalRecordsConsoleKey.Key, subs =>
         {
             subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
@@ -60,6 +63,18 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             subs.Event<CriminalRecordDeleteHistory>(OnDeleteHistory);
             subs.Event<CriminalRecordSetStatusFilter>(OnStatusFilterPressed);
         });
+        */
+        // CD: also subscribe to status changes from the CD records console
+        Subs.BuiEvents<CriminalRecordsConsoleComponent>(GenericRecordsConsoleKey.Key,
+            subs =>
+            {
+                subs.Event<SelectStationRecord>(OnKeySelected);
+                subs.Event((Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordChangeStatus args) =>
+                {
+                    OnChangeStatus(ent, ref args);
+                    RaiseLocalEvent(ent, new CharacterRecordsModifiedEvent());
+                });
+            });
     }
 
     private void UpdateUserInterface<T>(Entity<CriminalRecordsConsoleComponent> ent, ref T args)

@@ -63,6 +63,14 @@ public sealed partial class GenericRecordsMenu : FancyWindow
             RecordFilterType.AddItem(GetTypeFilterLocals(item), (int)item);
         }
 
+        // Again, if wizden changes something about Criminal Records, we want to replicate the
+        // functionality here.
+        foreach (var status in Enum.GetValues<SecurityStatus>())
+        {
+            var name = Loc.GetString($"criminal-records-status-{status.ToString().ToLower()}");
+            StatusOptionButton.AddItem(name, (int)status);
+        }
+
         #region buttons
 
         CharacterListing.OnItemSelected += _ =>
@@ -105,6 +113,12 @@ public sealed partial class GenericRecordsMenu : FancyWindow
         {
             AutopsyInformation.Visible = !AutopsyInformation.Visible;
             ARButtonArrow.TexturePath = AutopsyInformation.Visible ? ArrowUp : ArrowDown;
+        };
+
+        SIButton.OnButtonUp += _ =>
+        {
+            SecurityInformation.Visible = !SecurityInformation.Visible;
+            SIButtonArrow.TexturePath = SecurityInformation.Visible ? ArrowUp : ArrowDown;
         };
 
         // buttons to filter the crew list
@@ -232,12 +246,12 @@ public sealed partial class GenericRecordsMenu : FancyWindow
                 PopulateMedicalInformation(record);
                 break;
             case RecordConsoleType.Security:
-                PopulateSecurityInformation(record);
+                PopulateSecurityInformation(record, state.SelectedSecurityStatus);
                 break;
             case RecordConsoleType.Admin:
                 PopulateEmploymentInformation(record);
                 PopulateMedicalInformation(record);
-                PopulateSecurityInformation(record);
+                PopulateSecurityInformation(record, state.SelectedSecurityStatus);
                 break;
         }
     }
@@ -337,8 +351,6 @@ public sealed partial class GenericRecordsMenu : FancyWindow
         var cr = record.PRecords;
         RecordContainerMedical.Visible = true;
 
-        RecordContainerFingerprints.Text = record.Fingerprint ?? Loc.GetString("cd-character-records-viewer-unknown");
-        RecordContainerDNA.Text = record.DNA ?? Loc.GetString("cd-character-records-viewer-unknown");
         RecordContainerBloodType.Text = GetBloodTypeLocals(cr.BloodType);
         RecordContainerIdentFeatures.Title = "[color=darkgray]" + Loc.GetString("funky-medical-records-identifying-features-title") + "[/color]";
         RecordContainerIdentFeatures.SetValue(cr.IdentifyingFeatures == "" ? "[color=white]" + Loc.GetString("cd-character-records-viewer-unknown") + "[/color]": "[color=white]" + cr.IdentifyingFeatures + "[/color]");
@@ -416,13 +428,32 @@ public sealed partial class GenericRecordsMenu : FancyWindow
         }
     }
 
+    // TODO:
+    // 1. make sure all of the info from the og criminal records console is refreshed here
+    // 2. persistent wanted reasons + logging
+    // 3. print slips with criminal history?
+    // 4. reuse for medical history
+    // 5. final ui cleanup
     /// <param name="record">character information from the database</param>
-    private void PopulateSecurityInformation(FullCharacterRecords record)
+    /// <param name="criminal">if this record has a current criminal status, this will be not-null</param>
+    private void PopulateSecurityInformation(FullCharacterRecords record, (SecurityStatus, string?)? criminal)
     {
         // record = base wizden information
         // cr = extra flavor info added from cosmatic drift
         var cr = record.PRecords;
         RecordContainerSecurity.Visible = true;
+
+        RecordContainerFingerprints.Text = record.Fingerprint ?? Loc.GetString("cd-character-records-viewer-unknown");
+        RecordContainerDNA.Text = record.DNA ?? Loc.GetString("cd-character-records-viewer-unknown");
+
+        RecordContainerWantedReason.Visible = false;
+        if (criminal != null)
+        {
+            var (stat, reason) = criminal.Value;
+            StatusOptionButton.Select((int)stat);
+            RecordContainerWantedReason.Text = reason;
+            RecordContainerWantedReason.Visible = reason != null;
+        }
     }
 
     // This is copied almost verbatim from CriminalRecordsConsoleWindow.xaml.cs
