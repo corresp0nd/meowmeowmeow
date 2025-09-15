@@ -91,6 +91,7 @@ public sealed class GenericRecordsConsoleSystem : EntitySystem
                 SelectedIndex = console.SelectedIndex,
                 SelectedRecord = record,
                 Filter = console.Filter,
+                ConsoleType = console.ConsoleType,
             });
     }
 

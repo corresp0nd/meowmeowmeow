@@ -7,13 +7,12 @@
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:ui="clr-namespace:Content.Client._CD.Records.UI"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-    <BoxContainer Orientation="Vertical">
-        <!--  main container  -->
-        <BoxContainer
-            HorizontalExpand="True"
-            Orientation="Horizontal"
-            VerticalExpand="True">
+<BoxContainer Orientation="Vertical">
+    <!--  main container  -->
+    <BoxContainer
+        HorizontalExpand="True"
+        Orientation="Horizontal"
+        VerticalExpand="True">
 
             <!--  left column  -->
             <BoxContainer
@@ -95,8 +94,9 @@
                         VerticalExpand="True">
                         <BoxContainer Orientation="Vertical">
 
+                            <!-- GENERAL INFO -->
                             <BoxContainer Name="RecordContainerGeneral" Orientation="Vertical">
-                            <!--  general info header  -->
+                            <!--  header  -->
                             <BoxContainer Margin="5" Orientation="Horizontal">
                                 <Label
                                     HorizontalAlignment="Left"
@@ -117,7 +117,7 @@
                                 </BoxContainer>
                             </BoxContainer>
 
-                            <!--  general information fills  -->
+                            <!--  fills  -->
                             <BoxContainer
                                 Margin="20,0"
                                 Name="GeneralInformation"
@@ -202,12 +202,34 @@
                             <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
                             </BoxContainer>
 
-                            <BoxContainer Name="RecordContainerEmployment">
+                            <!--  EMPLOYMENT  -->
+                            <BoxContainer Name="RecordContainerEmployment" Orientation="Vertical">
+                                <!--  header  -->
+                                <BoxContainer Margin="5" Orientation="Horizontal">
+                                    <Label
+                                        HorizontalAlignment="Left"
+                                        HorizontalExpand="True"
+                                        Text="{Loc 'funky-medical-records-medical-info'}" />
+                                    <BoxContainer Orientation="Horizontal" SetHeight="24">
+                                        <Button
+                                            Margin="-1"
+                                            Name="EIButton"
+                                            SetWidth="27"
+                                            StyleClasses="ButtonSquare">
+                                            <TextureRect
+                                                Margin="-8,-2,0,0"
+                                                Name="EIButtonArrow"
+                                                TexturePath="/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png"
+                                                VerticalAlignment="Center" />
+                                        </Button>
+                                    </BoxContainer>
+                                </BoxContainer>
                                 <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
                             </BoxContainer>
 
-                            <BoxContainer Name="RecordContainerMedical">
-                            <!--  medical info header  -->
+                            <!--  MEDICAL  -->
+                            <BoxContainer Name="RecordContainerMedical" Orientation="Vertical">
+                            <!--  header  -->
                             <BoxContainer Margin="5" Orientation="Horizontal">
                                 <Label
                                     HorizontalAlignment="Left"
@@ -293,7 +315,7 @@
                             </BoxContainer>
                             </BoxContainer>
 
-                            <BoxContainer Name="RecordContainerSecurity" Visible="False">
+                            <BoxContainer Name="RecordContainerSecurity" Orientation="Vertical">
                                 <BoxContainer Orientation="Horizontal" Margin="5 5 5 5">
                                     <Label Text="{Loc 'criminal-records-console-status'}" FontColorOverride="DarkGray"/>
                                     <OptionButton Name="StatusOptionButton"/>
