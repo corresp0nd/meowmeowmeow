@@ -2,7 +2,7 @@
     MinSize="850 750"
     Resizable="True"
     SetSize="1000 750"
-    Title="{Loc 'funky-medical-records-window-title'}"
+    Title="{Loc 'funky-records-window-title'}"
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:ui="clr-namespace:Content.Client._CD.Records.UI"
@@ -26,7 +26,7 @@
                         HorizontalExpand="True"
                         MinWidth="100"
                         Name="RecordFiltersReset"
-                        Text="{Loc 'funky-medical-records-reset'}" />
+                        Text="{Loc 'funky-records-reset'}" />
                 </BoxContainer>
 
                 <!--  entry list  -->
@@ -58,11 +58,11 @@
                         HorizontalExpand="True"
                         MinWidth="100"
                         Name="RecordFiltersValue"
-                        PlaceHolder="{Loc 'funky-medical-records-search-placeholder'}" />
+                        PlaceHolder="{Loc 'funky-records-search-placeholder'}" />
                     <Button
                         Name="RecordFilters"
                         SetWidth="100"
-                        Text="{Loc 'funky-medical-records-search'}"
+                        Text="{Loc 'funky-records-search'}"
                         TextAlign="Center" />
                 </BoxContainer>
 
@@ -70,7 +70,7 @@
                     Align="Center"
                     Name="RecordContainerStatus"
                     StyleClasses="LabelBig"
-                    Text="{Loc 'funky-medical-records-no-record-selected'}"
+                    Text="{Loc 'funky-records-no-record-selected'}"
                     VerticalExpand="True" />
 
                 <!--  information  -->
@@ -85,7 +85,7 @@
                         Margin="10"
                         Name="RecordContainerName"
                         StyleClasses="LabelBig"
-                        Text="{Loc 'funky-medical-records-crewmember'}" />
+                        Text="{Loc 'funky-records-crewmember'}" />
 
                     <ScrollContainer
                         HScrollEnabled="False"
@@ -101,7 +101,7 @@
                                 <Label
                                     HorizontalAlignment="Left"
                                     HorizontalExpand="True"
-                                    Text="{Loc 'funky-medical-records-general-info'}" />
+                                    Text="{Loc 'funky-records-general-info'}" />
                                 <BoxContainer Orientation="Horizontal" SetHeight="24">
                                     <Button
                                         Margin="-1"
@@ -116,89 +116,10 @@
                                     </Button>
                                 </BoxContainer>
                             </BoxContainer>
-
-                            <!--  fills  -->
                             <BoxContainer
                                 Margin="20,0"
                                 Name="GeneralInformation"
-                                Orientation="Vertical">
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        Name="JobTitle"
-                                        StyleClasses="LabelSecondaryColor"
-                                        Text="{Loc 'funky-medical-records-job-title'}" />
-                                    <Label Margin="5,0" Name="RecordContainerJob" />
-                                </BoxContainer>
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        Name="GenderTitle"
-                                        StyleClasses="LabelSecondaryColor"
-                                        Text="{Loc 'funky-medical-records-gender-title'}" />
-                                    <Label Margin="5,0" Name="RecordContainerGender" />
-                                </BoxContainer>
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        Name="SpeciesTitle"
-                                        StyleClasses="LabelSecondaryColor"
-                                        Text="{Loc 'funky-medical-records-species-title'}" />
-                                    <Label Margin="5,0" Name="RecordContainerSpecies" />
-                                </BoxContainer>
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        Name="AgeTitle"
-                                        StyleClasses="LabelSecondaryColor"
-                                        Text="{Loc 'funky-medical-records-age-title'}" />
-                                    <Label Margin="5,0" Name="RecordContainerAge" />
-                                </BoxContainer>
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        Name="HeightTitle"
-                                        StyleClasses="LabelSecondaryColor"
-                                        Text="{Loc 'funky-medical-records-height-title'}" />
-                                    <Label Margin="5,0" Name="RecordContainerHeight" />
-                                </BoxContainer>
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        Name="WeightTitle"
-                                        StyleClasses="LabelSecondaryColor"
-                                        Text="{Loc 'funky-medical-records-weight-title'}" />
-                                    <Label Margin="5,0" Name="RecordContainerWeight" />
-                                </BoxContainer>
-                                <BoxContainer Margin="5" Orientation="Horizontal" Name="WorkAuthContainer">
-                                    <Label
-                                        Name="WorkAuth"
-                                        StyleClasses="LabelSecondaryColor"
-                                        Text="{Loc 'funky-medical-records-work-auth-title'}" />
-                                    <Label Margin="5,0" Name="RecordContainerWorkAuth" />
-                                </BoxContainer>
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        Name="Insurance"
-                                        StyleClasses="LabelSecondaryColor"
-                                        Text="{Loc 'funky-medical-records-insurance-title'}" />
-                                    <Label Margin="5,0" Name="RecordContainerInsurance" />
-                                </BoxContainer>
-                                <BoxContainer
-                                    Name="InsuranceContainer"
-                                    Orientation="Vertical"
-                                    Visible="False">
-                                    <BoxContainer Margin="5" Orientation="Horizontal">
-                                        <Label
-                                            Name="InsuranceProvider"
-                                            StyleClasses="LabelSecondaryColor"
-                                            Text="{Loc 'funky-medical-records-insurance-provider-title'}" />
-                                        <Label Margin="5,0" Name="RecordContainerInsuranceProvider" />
-                                    </BoxContainer>
-                                    <BoxContainer Margin="5" Orientation="Horizontal">
-                                        <Label
-                                            Name="InsurancePlan"
-                                            StyleClasses="LabelSecondaryColor"
-                                            Text="{Loc 'funky-medical-records-insurance-plan-title'}" />
-                                        <Label Margin="5,0" Name="RecordContainerInsurancePlan" />
-                                    </BoxContainer>
-                                </BoxContainer>
-                            </BoxContainer>
-
+                                Orientation="Vertical" />
                             <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
                             </BoxContainer>
 
@@ -209,7 +130,7 @@
                                     <Label
                                         HorizontalAlignment="Left"
                                         HorizontalExpand="True"
-                                        Text="{Loc 'funky-medical-records-medical-info'}" />
+                                        Text="{Loc 'funky-records-employment-info'}" />
                                     <BoxContainer Orientation="Horizontal" SetHeight="24">
                                         <Button
                                             Margin="-1"
@@ -224,8 +145,12 @@
                                         </Button>
                                     </BoxContainer>
                                 </BoxContainer>
+                                <BoxContainer
+                                    Margin="20,0"
+                                    Name="EmploymentInformation"
+                                    Orientation="Vertical" />
                                 <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
-                            </BoxContainer>
+                                </BoxContainer>
 
                             <!--  MEDICAL  -->
                             <BoxContainer Name="RecordContainerMedical" Orientation="Vertical">
@@ -234,7 +159,7 @@
                                 <Label
                                     HorizontalAlignment="Left"
                                     HorizontalExpand="True"
-                                    Text="{Loc 'funky-medical-records-medical-info'}" />
+                                    Text="{Loc 'funky-records-medical-info'}" />
                                 <BoxContainer Orientation="Horizontal" SetHeight="24">
                                     <Button
                                         Margin="-1"
@@ -254,60 +179,19 @@
                             <BoxContainer
                                 Margin="20,0"
                                 Name="MedicalInformation"
-                                Orientation="Vertical">
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        Name="BloodTypeTitle"
-                                        StyleClasses="LabelSecondaryColor"
-                                        Text="{Loc 'funky-medical-records-blood-title'}" />
-                                    <Label Margin="5,0" Name="RecordContainerBloodType" />
-                                </BoxContainer>
-                                <BoxContainer Name="MedicalInfoContainer" Orientation="Vertical" />
-                                <ui:RecordLongItemDisplay Margin="5" Name="RecordContainerIdentFeatures" />
-                                <ui:RecordLongItemDisplay Margin="5" Name="RecordContainerPostMortem" />
+                                Orientation="Vertical" />
+
+                            <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
                             </BoxContainer>
 
-                            <!--  todo implement autopsies  -->
-                            <BoxContainer Visible="False">
-                                <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
-
-                                <!--  autopsy header  -->
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        HorizontalAlignment="Left"
-                                        HorizontalExpand="True"
-                                        Text="{Loc 'funky-medical-records-autopsy-info'}" />
-                                    <BoxContainer Orientation="Horizontal" SetHeight="24">
-                                        <Button
-                                            Margin="-1"
-                                            Name="ARButton"
-                                            SetWidth="27"
-                                            StyleClasses="ButtonSquare">
-                                            <TextureRect
-                                                Margin="-8,-2,0,0"
-                                                Name="ARButtonArrow"
-                                                TexturePath="/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png"
-                                                VerticalAlignment="Center" />
-                                        </Button>
-                                    </BoxContainer>
-                                </BoxContainer>
-
-                                <BoxContainer
-                                    Margin="20,0"
-                                    Name="AutopsyInformation"
-                                    Orientation="Vertical">
-                                    <RichTextLabel Name="AutopsyUndocumented" Text="This patient has not received an autopsy, or their autopsy has not been documented." />
-                                </BoxContainer>
-                            </BoxContainer>
-                            </BoxContainer>
-
+                            <!-- SECURITY -->
                             <BoxContainer Name="RecordContainerSecurity" Orientation="Vertical">
                                 <!--  header  -->
                                 <BoxContainer Margin="5" Orientation="Horizontal">
                                     <Label
                                         HorizontalAlignment="Left"
                                         HorizontalExpand="True"
-                                        Text="{Loc 'funky-medical-records-medical-info'}" />
+                                        Text="{Loc 'funky-records-security-info'}" />
                                     <BoxContainer Orientation="Horizontal" SetHeight="24">
                                         <Button
                                             Margin="-1"
@@ -327,27 +211,6 @@
                                     Margin="20,0"
                                     Name="SecurityInformation"
                                     Orientation="Vertical">
-                                    <BoxContainer Margin="5" Orientation="Horizontal">
-                                        <Label
-                                            Name="FingerprintsTitle"
-                                            StyleClasses="LabelSecondaryColor"
-                                            Text="{Loc 'funky-medical-records-fingerprints-title'}" />
-                                        <Label Margin="5,0" Name="RecordContainerFingerprints" />
-                                    </BoxContainer>
-                                    <BoxContainer Margin="5" Orientation="Horizontal">
-                                        <Label
-                                            Name="DNATitle"
-                                            StyleClasses="LabelSecondaryColor"
-                                            Text="{Loc 'funky-medical-records-dna-title'}" />
-                                        <Label Margin="5,0" Name="RecordContainerDNA" />
-                                    </BoxContainer>
-
-                                    <BoxContainer Orientation="Horizontal" Margin="5 5 5 5">
-                                        <Label Text="{Loc 'criminal-records-console-status'}" FontColorOverride="DarkGray"/>
-                                        <OptionButton Name="StatusOptionButton"/>
-                                        <Control MinWidth="5"/>
-                                        <Label Name="RecordContainerWantedReason" Visible="False" />
-                                    </BoxContainer>
                                 </BoxContainer>
 
                                 <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
@@ -366,7 +229,7 @@
                 Margin="10,2,5,0"
                 Orientation="Horizontal"
                 VerticalAlignment="Bottom">
-                <Label StyleClasses="WindowFooterText" Text="Medical Department" />
+                <Label StyleClasses="WindowFooterText" Text="NT Records" />
                 <Label
                     HorizontalAlignment="Right"
                     HorizontalExpand="True"

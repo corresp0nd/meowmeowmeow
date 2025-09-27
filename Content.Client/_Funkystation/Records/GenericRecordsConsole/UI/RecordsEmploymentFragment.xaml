@@ -1,0 +1,40 @@
+<BoxContainer
+    xmlns="https://spacestation14.io"
+    xmlns:ui="clr-namespace:Content.Client._CD.Records.UI"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Orientation="Vertical">
+    <BoxContainer Margin="5" Orientation="Horizontal" Name="WorkAuthContainer">
+        <Label
+            Name="WorkAuth"
+            StyleClasses="LabelSecondaryColor"
+            Text="{Loc 'funky-records-work-auth-title'}" />
+        <Label Margin="5,0" Name="RecordContainerWorkAuth" />
+    </BoxContainer>
+    <BoxContainer Margin="5" Orientation="Horizontal">
+        <Label
+            Name="Insurance"
+            StyleClasses="LabelSecondaryColor"
+            Text="{Loc 'funky-records-insurance-title'}" />
+        <Label Margin="5,0" Name="RecordContainerInsurance" />
+    </BoxContainer>
+    <BoxContainer
+        Name="InsuranceContainer"
+        Orientation="Vertical"
+        Visible="False">
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="InsuranceProvider"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-insurance-provider-title'}" />
+            <Label Margin="5,0" Name="RecordContainerInsuranceProvider" />
+        </BoxContainer>
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="InsurancePlan"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-insurance-plan-title'}" />
+            <Label Margin="5,0" Name="RecordContainerInsurancePlan" />
+        </BoxContainer>
+    </BoxContainer>
+    <ui:RecordLongItemDisplay Margin="5" Name="RecordContainerIdentFeatures" />
+</BoxContainer>

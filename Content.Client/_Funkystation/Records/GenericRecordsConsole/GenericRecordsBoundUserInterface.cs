@@ -15,6 +15,7 @@ namespace Content.Client._Funkystation.Records.GenericRecordsConsole;
 public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [ViewVariables] private GenericRecordsMenu? _menu;
+    [ViewVariables] private RecordsSecurityFragment? _security;
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
@@ -23,7 +24,6 @@ public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey
         if (state is not GenericRecordsConsoleState cast)
             return;
 
-        // set maxlen here ?
         _menu?.UpdateState(cast);
     }
 
@@ -32,6 +32,7 @@ public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey
         base.Open();
 
         _menu = new GenericRecordsMenu();
+        _security = _menu.SecurityFragment;
         _menu.OnClose += Close;
 
         _menu.OnListingItemSelected += meta =>
@@ -43,13 +44,13 @@ public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey
             if (_menu.IsSecurity() && meta?.StationRecordKey != null)
             {
                 SendMessage(new SelectStationRecord(meta.Value.StationRecordKey.Value));
-                _menu.SetSecurityStatusEnabled(true);
+                _security.SetSecurityStatusEnabled(true);
             }
             else
             {
                 // If the user does not have criminal records for some reason, we should not be able
                 // to set their wanted status
-                _menu.SetSecurityStatusEnabled(false);
+                _security.SetSecurityStatusEnabled(false);
             }
         };
 
@@ -60,7 +61,7 @@ public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey
                 : new GenericRecordsConsoleFilterMsg(new StationRecordsFilter(ty, txt)));
         };
 
-        _menu.OnSetSecurityStatus += (status, reason) =>
+        _security.OnSetSecurityStatus += (status, reason) =>
         {
             SendMessage(new CriminalRecordChangeStatus(status, reason));
         };

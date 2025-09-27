@@ -571,15 +571,24 @@
   name: station records computer
   description: This can be used to check station records.
   components:
-  - type: GeneralStationRecordConsole
+  - type: GenericRecordsConsole # begin funky
+    consoleType: Employment
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.GenericRecordsConsoleKey.Key
   - type: UserInterface
     interfaces:
-        enum.GeneralStationRecordConsoleKey.Key:
-          type: GeneralStationRecordConsoleBoundUserInterface
-        enum.WiresUiKey.Key:
-          type: WiresBoundUserInterface
-  - type: ActivatableUI
-    key: enum.GeneralStationRecordConsoleKey.Key
+      enum.GenericRecordsConsoleKey.Key:
+        type: GenericRecordsBoundUserInterface
+#  - type: GeneralStationRecordConsole
+#  - type: UserInterface
+#    interfaces:
+#        enum.GeneralStationRecordConsoleKey.Key:
+#          type: GeneralStationRecordConsoleBoundUserInterface
+#        enum.WiresUiKey.Key:
+#          type: WiresBoundUserInterface
+#  - type: ActivatableUI
+#    key: enum.GeneralStationRecordConsoleKey.Key # end funky
   - type: PointLight
     radius: 1.5
     energy: 1.6
