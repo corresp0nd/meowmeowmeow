@@ -1,8 +1,8 @@
 <BoxContainer
+    Orientation="Vertical"
     xmlns="https://spacestation14.io"
     xmlns:ui="clr-namespace:Content.Client._CD.Records.UI"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Orientation="Vertical">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <BoxContainer Margin="5" Orientation="Horizontal">
         <Label
             Name="FingerprintsTitle"
@@ -18,10 +18,18 @@
         <Label Margin="5,0" Name="RecordContainerDNA" />
     </BoxContainer>
 
-    <BoxContainer Orientation="Horizontal" Margin="5 5 5 5">
-        <Label Text="{Loc 'funky-records-console-status'}" FontColorOverride="DarkGray" />
-        <OptionButton Name="StatusOptionButton" Margin="5,0"/>
+    <BoxContainer Margin="5,5,5,5" Orientation="Horizontal">
+        <Label StyleClasses="LabelSecondaryColor" Text="{Loc 'funky-records-console-status'}" />
+        <OptionButton Margin="5,0" Name="StatusOptionButton" />
     </BoxContainer>
 
-    <ui:RecordLongItemDisplay Margin="5" Name="WantedReason" Visible="False" />
+    <ui:RecordLongItemDisplay
+        Margin="5"
+        Name="WantedReason"
+        Visible="False" />
+
+    <ScrollContainer VerticalExpand="True">
+        <ItemList Name="History" />
+        <!--  Populated when window opened  -->
+    </ScrollContainer>
 </BoxContainer>
