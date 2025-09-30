@@ -27,10 +27,10 @@ public sealed partial class RecordsMedicalFragment : BoxContainer
         var cr = record.PRecords;
 
         RecordContainerBloodType.Text = GetBloodTypeLocals(cr.BloodType);
-        RecordContainerIdentFeatures.Title = "[color=darkgray]" + Loc.GetString("funky-records-identifying-features-title") + "[/color]";
-        RecordContainerIdentFeatures.SetValue(cr.IdentifyingFeatures == "" ? "[color=white]" + Loc.GetString("funky-records-viewer-unknown") + "[/color]": "[color=white]" + cr.IdentifyingFeatures + "[/color]");
-        RecordContainerPostMortem.Title = "[color=darkgray]" + Loc.GetString("funky-records-post-mortem-title") + "[/color]";
-        RecordContainerPostMortem.SetValue("[color=white]" + cr.PostmortemInstructions + "[/color]");
+        RecordContainerIdentFeatures.Title = Loc.GetString("funky-records-identifying-features-title");
+        RecordContainerIdentFeatures.SetValue(cr.IdentifyingFeatures == "" ? Loc.GetString("funky-records-viewer-unknown") : cr.IdentifyingFeatures);
+        RecordContainerPostMortem.Title = Loc.GetString("funky-records-post-mortem-title");
+        RecordContainerPostMortem.SetValue(cr.PostmortemInstructions);
         RefreshMedicalInformation(cr.MedicalInfo);
 
         RecordContainerInsurance.Text = cr.HasInsurance ? Loc.GetString("funky-records-yes") : Loc.GetString("funky-records-no");
@@ -92,14 +92,14 @@ public sealed partial class RecordsMedicalFragment : BoxContainer
 
             var item = new RecordLongItemDisplay()
             {
-                Title = "[color=darkgray]" + Loc.GetString(category.Name) + ": [/color]",
+                Title = Loc.GetString(category.Name) + ": ",
                 Margin = new Thickness(5),
             };
 
             var text = string.Join(", ", categoryItems);
             item.SetValue(text == ""
-                ? "[color=white]" + Loc.GetString("funky-records-viewer-none-provided") + "[/color]"
-                : "[color=white]" + text + "[/color]");
+                ? Loc.GetString("funky-records-viewer-none-provided")
+                : text);
 
             MedicalInfoContainer.AddChild(item);
         }

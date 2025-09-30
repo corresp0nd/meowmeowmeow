@@ -38,9 +38,9 @@ public sealed class RecordLongItemDisplay : BoxContainer
         Visible = false,
     };
 
-    private readonly RichTextLabel _titleLabel = new() { Margin = new Thickness(0, 0, 5, 0) };
-    private readonly RichTextLabel _shortContents = new() { Visible = true, };
-    private readonly RichTextLabel _longContents = new() { HorizontalExpand = true, Margin = new Thickness(10, 0, 0, 0) };
+    private readonly Label _titleLabel = new() { Margin = new Thickness(0, 0, 5, 0), StyleClasses = { StyleNano.StyleClassLabelSecondaryColor }};
+    private readonly Label _shortContents = new() { Visible = true };
+    private readonly Label _longContents = new() { HorizontalExpand = true, Margin = new Thickness(10, 0, 0, 0) };
 
     public RecordLongItemDisplay()
     {

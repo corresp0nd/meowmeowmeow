@@ -51,7 +51,7 @@ public sealed partial class RecordsSecurityFragment : BoxContainer
         RecordContainerFingerprints.Text = record.Fingerprint ?? Loc.GetString("funky-records-viewer-unknown");
         RecordContainerDNA.Text = record.DNA ?? Loc.GetString("funky-records-viewer-unknown");
 
-        WantedReason.Title = "[color=darkgray]" + Loc.GetString("funky-records-wanted-title") + "[/color]";
+        WantedReason.Title = Loc.GetString("funky-records-wanted-title");
         WantedReason.Visible = false;
 
         if (criminal == null)

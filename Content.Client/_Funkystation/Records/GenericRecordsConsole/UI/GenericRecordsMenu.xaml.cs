@@ -187,7 +187,6 @@ public sealed partial class GenericRecordsMenu : FancyWindow
 
             CharacterListing.Clear();
 
-
             // Add the records to the listing in a sorted order. There is probably are faster way of doing this, but
             // this is not really a hot code path.
             state.CharacterList
