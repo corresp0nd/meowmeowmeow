@@ -53,6 +53,7 @@ public sealed partial class GenericRecordsMenu : FancyWindow
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
+        // todo unhardcode these and create generic parent containers/ui elements for collapsables
         // add the ui fragments to their parent containers
         SecurityInformation.AddChild(SecurityFragment);
         MedicalInformation.AddChild(MedicalFragment);
