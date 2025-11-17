@@ -4,7 +4,6 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Client.Stylesheets;
-using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._CD.Records.UI;
@@ -40,7 +39,8 @@ public sealed class RecordLongItemDisplay : BoxContainer
 
     private readonly Label _titleLabel = new() { Margin = new Thickness(0, 0, 5, 0), StyleClasses = { StyleNano.StyleClassLabelSecondaryColor }};
     private readonly Label _shortContents = new() { Visible = true };
-    private readonly Label _longContents = new() { HorizontalExpand = true, Margin = new Thickness(10, 0, 0, 0) };
+    // make sure this is sanitized if it is player-facing at all
+    private readonly RichTextLabel _longContents = new() { HorizontalExpand = true, Margin = new Thickness(10, 0, 0, 0) };
 
     public RecordLongItemDisplay()
     {
@@ -56,7 +56,7 @@ public sealed class RecordLongItemDisplay : BoxContainer
     {
         if (s.Length > MaxShortLength)
         {
-            _longContents.Text = s;
+            _longContents.Text = "[color=white]" + s + "[/color]"; // crashing out bc i still dont know how to override font colors on richtextlabels
             _secondRow.Visible = true;
             _shortContents.Visible = false;
         }

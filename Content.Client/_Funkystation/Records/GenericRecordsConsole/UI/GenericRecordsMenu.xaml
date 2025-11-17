@@ -7,12 +7,12 @@
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:ui="clr-namespace:Content.Client._CD.Records.UI"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-<BoxContainer Orientation="Vertical">
-    <!--  main container  -->
-    <BoxContainer
-        HorizontalExpand="True"
-        Orientation="Horizontal"
-        VerticalExpand="True">
+    <BoxContainer Orientation="Vertical">
+        <!--  main container  -->
+        <BoxContainer
+            HorizontalExpand="True"
+            Orientation="Horizontal"
+            VerticalExpand="True">
 
             <!--  left column  -->
             <BoxContainer
@@ -92,131 +92,7 @@
                         HorizontalExpand="True"
                         MinSize="100, 600"
                         VerticalExpand="True">
-                        <BoxContainer Orientation="Vertical">
-
-                            <!-- GENERAL INFO -->
-                            <BoxContainer Name="RecordContainerGeneral" Orientation="Vertical">
-                            <!--  header  -->
-                            <BoxContainer Margin="5" Orientation="Horizontal">
-                                <Label
-                                    HorizontalAlignment="Left"
-                                    HorizontalExpand="True"
-                                    Text="{Loc 'funky-records-general-info'}" />
-                                <BoxContainer Orientation="Horizontal" SetHeight="24">
-                                    <Button
-                                        Margin="-1"
-                                        Name="GIButton"
-                                        SetWidth="27"
-                                        StyleClasses="ButtonSquare">
-                                        <TextureRect
-                                            Margin="-8,-2,0,0"
-                                            Name="GIButtonArrow"
-                                            TexturePath="/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png"
-                                            VerticalAlignment="Center" />
-                                    </Button>
-                                </BoxContainer>
-                            </BoxContainer>
-                            <BoxContainer
-                                Margin="20,0"
-                                Name="GeneralInformation"
-                                Orientation="Vertical" />
-                            <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
-                            </BoxContainer>
-
-                            <!--  EMPLOYMENT  -->
-                            <BoxContainer Name="RecordContainerEmployment" Orientation="Vertical">
-                                <!--  header  -->
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        HorizontalAlignment="Left"
-                                        HorizontalExpand="True"
-                                        Text="{Loc 'funky-records-employment-info'}" />
-                                    <BoxContainer Orientation="Horizontal" SetHeight="24">
-                                        <Button
-                                            Margin="-1"
-                                            Name="EIButton"
-                                            SetWidth="27"
-                                            StyleClasses="ButtonSquare">
-                                            <TextureRect
-                                                Margin="-8,-2,0,0"
-                                                Name="EIButtonArrow"
-                                                TexturePath="/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png"
-                                                VerticalAlignment="Center" />
-                                        </Button>
-                                    </BoxContainer>
-                                </BoxContainer>
-                                <BoxContainer
-                                    Margin="20,0"
-                                    Name="EmploymentInformation"
-                                    Orientation="Vertical" />
-                                <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
-                                </BoxContainer>
-
-                            <!--  MEDICAL  -->
-                            <BoxContainer Name="RecordContainerMedical" Orientation="Vertical">
-                            <!--  header  -->
-                            <BoxContainer Margin="5" Orientation="Horizontal">
-                                <Label
-                                    HorizontalAlignment="Left"
-                                    HorizontalExpand="True"
-                                    Text="{Loc 'funky-records-medical-info'}" />
-                                <BoxContainer Orientation="Horizontal" SetHeight="24">
-                                    <Button
-                                        Margin="-1"
-                                        Name="MIButton"
-                                        SetWidth="27"
-                                        StyleClasses="ButtonSquare">
-                                        <TextureRect
-                                            Margin="-8,-2,0,0"
-                                            Name="MIButtonArrow"
-                                            TexturePath="/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png"
-                                            VerticalAlignment="Center" />
-                                    </Button>
-                                </BoxContainer>
-                            </BoxContainer>
-
-                            <!--  medical information fills  -->
-                            <BoxContainer
-                                Margin="20,0"
-                                Name="MedicalInformation"
-                                Orientation="Vertical" />
-
-                            <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
-                            </BoxContainer>
-
-                            <!-- SECURITY -->
-                            <BoxContainer Name="RecordContainerSecurity" Orientation="Vertical">
-                                <!--  header  -->
-                                <BoxContainer Margin="5" Orientation="Horizontal">
-                                    <Label
-                                        HorizontalAlignment="Left"
-                                        HorizontalExpand="True"
-                                        Text="{Loc 'funky-records-security-info'}" />
-                                    <BoxContainer Orientation="Horizontal" SetHeight="24">
-                                        <Button
-                                            Margin="-1"
-                                            Name="SIButton"
-                                            SetWidth="27"
-                                            StyleClasses="ButtonSquare">
-                                            <TextureRect
-                                                Margin="-8,-2,0,0"
-                                                Name="SIButtonArrow"
-                                                TexturePath="/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png"
-                                                VerticalAlignment="Center" />
-                                        </Button>
-                                    </BoxContainer>
-                                </BoxContainer>
-
-                                <BoxContainer
-                                    Margin="20,0"
-                                    Name="SecurityInformation"
-                                    Orientation="Vertical">
-                                </BoxContainer>
-
-                                <PanelContainer Margin="0,5,20,5" StyleClasses="LowDivider" />
-                            </BoxContainer>
-
-                        </BoxContainer>
+                        <BoxContainer Name="RecordContainerFill" Orientation="Vertical" />
                     </ScrollContainer>
                 </BoxContainer>
             </BoxContainer>
