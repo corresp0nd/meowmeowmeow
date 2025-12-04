@@ -7,10 +7,12 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared._Funkystation.Records;
 using Content.Shared._Funkystation.Records.GenericRecordsConsole;
+using Content.Shared._Funkystation.Security;
 using Content.Shared.CriminalRecords;
 using Content.Shared.Security;
 using Content.Shared.StationRecords;
 using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Funkystation.Records.GenericRecordsConsole;
 
@@ -87,7 +89,7 @@ public sealed class GenericRecordsConsoleSystem : EntitySystem
                 ? null
                 : value;
 
-        (SecurityStatus, string?)? securityStatus = null;
+        CriminalRecord? criminalRecord = null;
 
         // If we need the character's security status, gather it from the criminal records
         if ((console.ConsoleType == RecordConsoleType.Admin ||
@@ -96,7 +98,7 @@ public sealed class GenericRecordsConsoleSystem : EntitySystem
         {
             var key = new StationRecordKey(record.StationRecordsKey.Value, station.Value);
             if (_records.TryGetRecord<CriminalRecord>(key, out var entry))
-                securityStatus = (entry.Status, entry.Reason);
+                criminalRecord = entry;
         }
 
         SendState(entity,
@@ -107,7 +109,7 @@ public sealed class GenericRecordsConsoleSystem : EntitySystem
                 SelectedRecord = record,
                 Filter = console.Filter,
                 ConsoleType = console.ConsoleType,
-                SelectedSecurityStatus = securityStatus,
+                SelectedCriminal = criminalRecord,
             });
     }
 
