@@ -15,7 +15,6 @@ namespace Content.Client._Funkystation.Records.GenericRecordsConsole;
 public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [ViewVariables] private GenericRecordsMenu? _menu;
-    [ViewVariables] private RecordsSecurityFragment? _security;
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
@@ -43,13 +42,6 @@ public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey
             if (_menu.IsSecurity() && meta?.StationRecordKey != null)
             {
                 SendMessage(new SelectStationRecord(meta.Value.StationRecordKey.Value));
-                _security.SetSecurityStatusEnabled(true);
-            }
-            else
-            {
-                // If the user does not have criminal records for some reason, we should not be able
-                // to set their wanted status
-                _security.SetSecurityStatusEnabled(false);
             }
         };
 
@@ -58,11 +50,6 @@ public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey
             SendMessage(txt == null
                 ? new GenericRecordsConsoleFilterMsg(null)
                 : new GenericRecordsConsoleFilterMsg(new StationRecordsFilter(ty, txt)));
-        };
-
-        _security.OnSetSecurityStatus += (status, reason) =>
-        {
-            SendMessage(new CriminalRecordChangeStatus(status, reason));
         };
 
         _menu.OpenCentered();

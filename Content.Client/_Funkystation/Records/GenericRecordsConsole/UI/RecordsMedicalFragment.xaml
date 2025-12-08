@@ -1,42 +1,66 @@
 <BoxContainer
+    Orientation="Vertical"
     xmlns="https://spacestation14.io"
     xmlns:ui="clr-namespace:Content.Client._CD.Records.UI"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Orientation="Vertical">
-    <BoxContainer Margin="5" Orientation="Horizontal">
-        <Label
-            Name="Insurance"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-insurance-title'}" />
-        <Label Margin="5,0" Name="RecordContainerInsurance" />
-    </BoxContainer>
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <BoxContainer
-        Name="InsuranceContainer"
-        Orientation="Vertical"
-        Visible="False">
-        <BoxContainer Margin="5" Orientation="Horizontal">
-            <Label
-                Name="InsuranceProvider"
-                StyleClasses="LabelSecondaryColor"
-                Text="{Loc 'funky-records-insurance-provider-title'}" />
-            <Label Margin="5,0" Name="RecordContainerInsuranceProvider" />
-        </BoxContainer>
-        <BoxContainer Margin="5" Orientation="Horizontal">
-            <Label
-                Name="InsurancePlan"
-                StyleClasses="LabelSecondaryColor"
-                Text="{Loc 'funky-records-insurance-plan-title'}" />
-            <Label Margin="5,0" Name="RecordContainerInsurancePlan" />
-        </BoxContainer>
-    </BoxContainer>
-    <BoxContainer Margin="5" Orientation="Horizontal">
+        Margin="5"
+        Name="RecordsHeader"
+        Orientation="Horizontal">
         <Label
-            Name="BloodTypeTitle"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-blood-title'}" />
-        <Label Margin="5,0" Name="RecordContainerBloodType" />
+            HorizontalAlignment="Left"
+            HorizontalExpand="True"
+            Text="{Loc 'funky-records-medical-info'}" />
+        <BoxContainer Orientation="Horizontal" SetHeight="24">
+            <Button
+                Margin="-1"
+                Name="HeaderButton"
+                SetWidth="27"
+                StyleClasses="ButtonSquare">
+                <TextureRect
+                    Margin="-8,-2,0,0"
+                    Name="HeaderButtonArrow"
+                    TexturePath="/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png"
+                    VerticalAlignment="Center" />
+            </Button>
+        </BoxContainer>
     </BoxContainer>
-    <BoxContainer Name="MedicalInfoContainer" Orientation="Vertical" />
-    <ui:RecordLongItemDisplay Margin="5" Name="RecordContainerIdentFeatures" />
-    <ui:RecordLongItemDisplay Margin="5" Name="RecordContainerPostMortem" />
+    <BoxContainer Name="RecordsContent" Orientation="Vertical">
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="Insurance"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-insurance-title'}" />
+            <Label Margin="5,0" Name="RecordContainerInsurance" />
+        </BoxContainer>
+        <BoxContainer
+            Name="InsuranceContainer"
+            Orientation="Vertical"
+            Visible="False">
+            <BoxContainer Margin="5" Orientation="Horizontal">
+                <Label
+                    Name="InsuranceProvider"
+                    StyleClasses="LabelSecondaryColor"
+                    Text="{Loc 'funky-records-insurance-provider-title'}" />
+                <Label Margin="5,0" Name="RecordContainerInsuranceProvider" />
+            </BoxContainer>
+            <BoxContainer Margin="5" Orientation="Horizontal">
+                <Label
+                    Name="InsurancePlan"
+                    StyleClasses="LabelSecondaryColor"
+                    Text="{Loc 'funky-records-insurance-plan-title'}" />
+                <Label Margin="5,0" Name="RecordContainerInsurancePlan" />
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="BloodTypeTitle"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-blood-title'}" />
+            <Label Margin="5,0" Name="RecordContainerBloodType" />
+        </BoxContainer>
+        <BoxContainer Name="MedicalInfoContainer" Orientation="Vertical" />
+        <ui:RecordLongItemDisplay Margin="5" Name="RecordContainerIdentFeatures" />
+        <ui:RecordLongItemDisplay Margin="5" Name="RecordContainerPostMortem" />
+    </BoxContainer>
 </BoxContainer>

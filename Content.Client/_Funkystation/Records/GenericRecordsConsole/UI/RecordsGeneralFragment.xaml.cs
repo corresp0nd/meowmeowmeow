@@ -12,12 +12,21 @@ namespace Content.Client._Funkystation.Records.GenericRecordsConsole.UI;
 [GenerateTypedNameReferences]
 public sealed partial class RecordsGeneralFragment : BoxContainer
 {
-    public RecordsGeneralFragment(FullCharacterRecords record)
+    // i am NOT making a whole style sheet for these icons right now. sorry.
+    // maybe next week style funky will be real
+    private const string ArrowUp = "/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png";
+    private const string ArrowDown = "/Textures/_Funkystation/Interface/StyleFunky/arrow_down.png";
+
+    public RecordsGeneralFragment()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        Refresh(record);
+        HeaderButton.OnButtonUp += _ =>
+        {
+            RecordsContent.Visible = !RecordsContent.Visible;
+            HeaderButtonArrow.TexturePath = RecordsContent.Visible ? ArrowUp : ArrowDown;
+        };
     }
 
     public void Refresh(FullCharacterRecords record)

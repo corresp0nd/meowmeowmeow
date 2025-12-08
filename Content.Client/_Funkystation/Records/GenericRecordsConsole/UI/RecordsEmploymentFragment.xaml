@@ -1,40 +1,67 @@
 <BoxContainer
+    Orientation="Vertical"
     xmlns="https://spacestation14.io"
     xmlns:ui="clr-namespace:Content.Client._CD.Records.UI"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Orientation="Vertical">
-    <BoxContainer Margin="5" Orientation="Horizontal" Name="WorkAuthContainer">
-        <Label
-            Name="WorkAuth"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-work-auth-title'}" />
-        <Label Margin="5,0" Name="RecordContainerWorkAuth" />
-    </BoxContainer>
-    <BoxContainer Margin="5" Orientation="Horizontal">
-        <Label
-            Name="Insurance"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-insurance-title'}" />
-        <Label Margin="5,0" Name="RecordContainerInsurance" />
-    </BoxContainer>
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <BoxContainer
-        Name="InsuranceContainer"
-        Orientation="Vertical"
-        Visible="False">
-        <BoxContainer Margin="5" Orientation="Horizontal">
-            <Label
-                Name="InsuranceProvider"
-                StyleClasses="LabelSecondaryColor"
-                Text="{Loc 'funky-records-insurance-provider-title'}" />
-            <Label Margin="5,0" Name="RecordContainerInsuranceProvider" />
-        </BoxContainer>
-        <BoxContainer Margin="5" Orientation="Horizontal">
-            <Label
-                Name="InsurancePlan"
-                StyleClasses="LabelSecondaryColor"
-                Text="{Loc 'funky-records-insurance-plan-title'}" />
-            <Label Margin="5,0" Name="RecordContainerInsurancePlan" />
+        Margin="5"
+        Name="RecordsHeader"
+        Orientation="Horizontal">
+        <Label
+            HorizontalAlignment="Left"
+            HorizontalExpand="True"
+            Text="{Loc 'funky-records-employment-info'}" />
+        <BoxContainer Orientation="Horizontal" SetHeight="24">
+            <Button
+                Margin="-1"
+                Name="HeaderButton"
+                SetWidth="27"
+                StyleClasses="ButtonSquare">
+                <TextureRect
+                    Margin="-8,-2,0,0"
+                    Name="HeaderButtonArrow"
+                    TexturePath="/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png"
+                    VerticalAlignment="Center" />
+            </Button>
         </BoxContainer>
     </BoxContainer>
-    <ui:RecordLongItemDisplay Margin="5" Name="RecordContainerIdentFeatures" />
+    <BoxContainer Name="RecordsContent" Orientation="Vertical">
+        <BoxContainer
+            Margin="5"
+            Name="WorkAuthContainer"
+            Orientation="Horizontal">
+            <Label
+                Name="WorkAuth"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-work-auth-title'}" />
+            <Label Margin="5,0" Name="RecordContainerWorkAuth" />
+        </BoxContainer>
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="Insurance"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-insurance-title'}" />
+            <Label Margin="5,0" Name="RecordContainerInsurance" />
+        </BoxContainer>
+        <BoxContainer
+            Name="InsuranceContainer"
+            Orientation="Vertical"
+            Visible="False">
+            <BoxContainer Margin="5" Orientation="Horizontal">
+                <Label
+                    Name="InsuranceProvider"
+                    StyleClasses="LabelSecondaryColor"
+                    Text="{Loc 'funky-records-insurance-provider-title'}" />
+                <Label Margin="5,0" Name="RecordContainerInsuranceProvider" />
+            </BoxContainer>
+            <BoxContainer Margin="5" Orientation="Horizontal">
+                <Label
+                    Name="InsurancePlan"
+                    StyleClasses="LabelSecondaryColor"
+                    Text="{Loc 'funky-records-insurance-plan-title'}" />
+                <Label Margin="5,0" Name="RecordContainerInsurancePlan" />
+            </BoxContainer>
+        </BoxContainer>
+        <ui:RecordLongItemDisplay Margin="5" Name="RecordContainerIdentFeatures" />
+    </BoxContainer>
 </BoxContainer>

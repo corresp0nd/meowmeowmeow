@@ -3,33 +3,57 @@
     xmlns="https://spacestation14.io"
     xmlns:ui="clr-namespace:Content.Client._CD.Records.UI"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <BoxContainer Margin="5" Orientation="Horizontal">
-        <Label
-            Name="FingerprintsTitle"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-fingerprints-title'}" />
-        <Label Margin="5,0" Name="RecordContainerFingerprints" />
-    </BoxContainer>
-    <BoxContainer Margin="5" Orientation="Horizontal">
-        <Label
-            Name="DNATitle"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-dna-title'}" />
-        <Label Margin="5,0" Name="RecordContainerDNA" />
-    </BoxContainer>
-
-    <BoxContainer Margin="5,5,5,5" Orientation="Horizontal">
-        <Label StyleClasses="LabelSecondaryColor" Text="{Loc 'funky-records-console-status'}" />
-        <OptionButton Margin="5,0" Name="StatusOptionButton" />
-    </BoxContainer>
-
-    <ui:RecordLongItemDisplay
+    <BoxContainer
         Margin="5"
-        Name="WantedReason"
-        Visible="False" />
+        Name="RecordsHeader"
+        Orientation="Horizontal">
+        <Label
+            HorizontalAlignment="Left"
+            HorizontalExpand="True"
+            Text="{Loc 'funky-records-security-info'}" />
+        <BoxContainer Orientation="Horizontal" SetHeight="24">
+            <Button
+                Margin="-1"
+                Name="HeaderButton"
+                SetWidth="27"
+                StyleClasses="ButtonSquare">
+                <TextureRect
+                    Margin="-8,-2,0,0"
+                    Name="HeaderButtonArrow"
+                    TexturePath="/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png"
+                    VerticalAlignment="Center" />
+            </Button>
+        </BoxContainer>
+    </BoxContainer>
+    <BoxContainer Name="RecordsContent" Orientation="Vertical">
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="FingerprintsTitle"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-fingerprints-title'}" />
+            <Label Margin="5,0" Name="RecordContainerFingerprints" />
+        </BoxContainer>
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="DNATitle"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-dna-title'}" />
+            <Label Margin="5,0" Name="RecordContainerDNA" />
+        </BoxContainer>
 
-    <ScrollContainer VerticalExpand="True">
-        <ItemList Name="History" />
-        <!--  Populated when window opened  -->
-    </ScrollContainer>
+        <BoxContainer Margin="5,5,5,5" Orientation="Horizontal">
+            <Label StyleClasses="LabelSecondaryColor" Text="{Loc 'funky-records-console-status'}" />
+            <OptionButton Margin="5,0" Name="StatusOptionButton" />
+        </BoxContainer>
+
+        <ui:RecordLongItemDisplay
+            Margin="5"
+            Name="WantedReason"
+            Visible="False" />
+
+        <ScrollContainer VerticalExpand="True">
+            <ItemList Name="History" />
+            <!--  Populated when window opened  -->
+        </ScrollContainer>
+    </BoxContainer>
 </BoxContainer>

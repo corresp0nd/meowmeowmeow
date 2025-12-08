@@ -1,48 +1,72 @@
 <BoxContainer
+    Orientation="Vertical"
     xmlns="https://spacestation14.io"
     xmlns:ui="clr-namespace:Content.Client._CD.Records.UI"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Orientation="Vertical">
-    <BoxContainer Margin="5" Orientation="Horizontal">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BoxContainer
+        Margin="5"
+        Name="RecordsHeader"
+        Orientation="Horizontal">
         <Label
-            Name="JobTitle"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-job-title'}" />
-        <Label Margin="5,0" Name="RecordContainerJob" />
+            HorizontalAlignment="Left"
+            HorizontalExpand="True"
+            Text="{Loc 'funky-records-general-info'}" />
+        <BoxContainer Orientation="Horizontal" SetHeight="24">
+            <Button
+                Margin="-1"
+                Name="HeaderButton"
+                SetWidth="27"
+                StyleClasses="ButtonSquare">
+                <TextureRect
+                    Margin="-8,-2,0,0"
+                    Name="HeaderButtonArrow"
+                    TexturePath="/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png"
+                    VerticalAlignment="Center" />
+            </Button>
+        </BoxContainer>
     </BoxContainer>
-    <BoxContainer Margin="5" Orientation="Horizontal">
-        <Label
-            Name="GenderTitle"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-gender-title'}" />
-        <Label Margin="5,0" Name="RecordContainerGender" />
-    </BoxContainer>
-    <BoxContainer Margin="5" Orientation="Horizontal">
-        <Label
-            Name="SpeciesTitle"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-species-title'}" />
-        <Label Margin="5,0" Name="RecordContainerSpecies" />
-    </BoxContainer>
-    <BoxContainer Margin="5" Orientation="Horizontal">
-        <Label
-            Name="AgeTitle"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-age-title'}" />
-        <Label Margin="5,0" Name="RecordContainerAge" />
-    </BoxContainer>
-    <BoxContainer Margin="5" Orientation="Horizontal">
-        <Label
-            Name="HeightTitle"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-height-title'}" />
-        <Label Margin="5,0" Name="RecordContainerHeight" />
-    </BoxContainer>
-    <BoxContainer Margin="5" Orientation="Horizontal">
-        <Label
-            Name="WeightTitle"
-            StyleClasses="LabelSecondaryColor"
-            Text="{Loc 'funky-records-weight-title'}" />
-        <Label Margin="5,0" Name="RecordContainerWeight" />
+    <BoxContainer Name="RecordsContent" Orientation="Vertical">
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="JobTitle"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-job-title'}" />
+            <Label Margin="5,0" Name="RecordContainerJob" />
+        </BoxContainer>
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="GenderTitle"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-gender-title'}" />
+            <Label Margin="5,0" Name="RecordContainerGender" />
+        </BoxContainer>
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="SpeciesTitle"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-species-title'}" />
+            <Label Margin="5,0" Name="RecordContainerSpecies" />
+        </BoxContainer>
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="AgeTitle"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-age-title'}" />
+            <Label Margin="5,0" Name="RecordContainerAge" />
+        </BoxContainer>
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="HeightTitle"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-height-title'}" />
+            <Label Margin="5,0" Name="RecordContainerHeight" />
+        </BoxContainer>
+        <BoxContainer Margin="5" Orientation="Horizontal">
+            <Label
+                Name="WeightTitle"
+                StyleClasses="LabelSecondaryColor"
+                Text="{Loc 'funky-records-weight-title'}" />
+            <Label Margin="5,0" Name="RecordContainerWeight" />
+        </BoxContainer>
     </BoxContainer>
 </BoxContainer>

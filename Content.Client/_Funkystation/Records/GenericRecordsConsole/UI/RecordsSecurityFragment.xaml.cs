@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Funkystation.Records;
+using Content.Shared._Funkystation.Records.GenericRecordsConsole;
 using Content.Shared._Funkystation.Security;
 using Content.Shared.Administration;
 using Content.Shared.CriminalRecords;
@@ -17,6 +18,11 @@ namespace Content.Client._Funkystation.Records.GenericRecordsConsole.UI;
 [GenerateTypedNameReferences]
 public sealed partial class RecordsSecurityFragment : BoxContainer
 {
+    // i am NOT making a whole style sheet for these icons right now. sorry.
+    // maybe next week style funky will be real
+    private const string ArrowUp = "/Textures/_Funkystation/Interface/StyleFunky/arrow_up.png";
+    private const string ArrowDown = "/Textures/_Funkystation/Interface/StyleFunky/arrow_down.png";
+
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     public event Action<ProtoId<SecurityStatusPrototype>, string?>? OnSetSecurityStatus;
@@ -26,7 +32,7 @@ public sealed partial class RecordsSecurityFragment : BoxContainer
     private readonly Dictionary<int, SecurityStatusPrototype> _statusSelectorOptionsReverse = new();
     private static readonly ProtoId<LocalizedDatasetPrototype> ReasonPlaceholders = "CriminalRecordsWantedReasonPlaceholders";
 
-    public RecordsSecurityFragment(FullCharacterRecords record, CriminalRecord? criminal)
+    public RecordsSecurityFragment()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -41,12 +47,19 @@ public sealed partial class RecordsSecurityFragment : BoxContainer
             AddStatusSelect(status);
         }
 
-        UpdateState(record, criminal);
+        HeaderButton.OnButtonUp += _ =>
+        {
+            RecordsContent.Visible = !RecordsContent.Visible;
+            HeaderButtonArrow.TexturePath = RecordsContent.Visible ? ArrowUp : ArrowDown;
+        };
     }
 
-    public void UpdateState(FullCharacterRecords record, CriminalRecord? criminal)
+    public void UpdateState(GenericRecordsConsoleState state)
     {
-        SetValue(record, criminal);
+        // the fragment exists on non-security, non-admin consoles
+        // double check that the type is security, then enable/disable the buttons
+        var isSecurity = state.ConsoleType is RecordConsoleType.Admin or RecordConsoleType.Security;
+        SetSecurityStatusEnabled(isSecurity);
     }
 
     private void AddStatusSelect(SecurityStatusPrototype status)
@@ -58,7 +71,7 @@ public sealed partial class RecordsSecurityFragment : BoxContainer
         StatusOptionButton.AddItem(name, id);
     }
 
-    private void SetValue(FullCharacterRecords record, CriminalRecord? criminal)
+    public void Refresh(FullCharacterRecords record, CriminalRecord? criminal)
     {
         RecordContainerFingerprints.Text = record.Fingerprint ?? Loc.GetString("funky-records-viewer-unknown");
         RecordContainerDNA.Text = record.DNA ?? Loc.GetString("funky-records-viewer-unknown");
