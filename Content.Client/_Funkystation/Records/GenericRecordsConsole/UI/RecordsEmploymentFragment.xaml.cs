@@ -12,10 +12,12 @@ namespace Content.Client._Funkystation.Records.GenericRecordsConsole.UI;
 [GenerateTypedNameReferences]
 public sealed partial class RecordsEmploymentFragment : BoxContainer
 {
-    public RecordsEmploymentFragment()
+    public RecordsEmploymentFragment(FullCharacterRecords record)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+
+        Refresh(record);
     }
 
     public void Refresh(FullCharacterRecords record)

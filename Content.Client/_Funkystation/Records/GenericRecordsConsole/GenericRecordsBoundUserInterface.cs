@@ -32,7 +32,6 @@ public sealed class GenericRecordsBoundUserInterface(EntityUid owner, Enum uiKey
         base.Open();
 
         _menu = new GenericRecordsMenu();
-        _security = _menu.SecurityFragment;
         _menu.OnClose += Close;
 
         _menu.OnListingItemSelected += meta =>

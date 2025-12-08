@@ -14,10 +14,12 @@ public sealed partial class RecordsMedicalFragment : BoxContainer
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    public RecordsMedicalFragment()
+    public RecordsMedicalFragment(FullCharacterRecords record)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+
+        Refresh(record);
     }
 
     public void Refresh(FullCharacterRecords record)

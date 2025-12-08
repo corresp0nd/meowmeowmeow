@@ -35,13 +35,6 @@ public sealed partial class GenericRecordsMenu : FancyWindow
     private StationRecordFilterType _currentFilterType;
     private bool _isPopulating;
 
-    // if we need to access any of these via events, then this allows the bui to see them
-    // ex. look at the security fragment
-    public RecordsGeneralFragment GeneralFragment = new();
-    public RecordsMedicalFragment MedicalFragment = new();
-    public RecordsSecurityFragment SecurityFragment = new(null, null);
-    public RecordsEmploymentFragment EmploymentFragment = new();
-
     /// <summary>
     /// The key to the record of the currently selected item in the listing.
     /// </summary>
@@ -185,31 +178,27 @@ public sealed partial class GenericRecordsMenu : FancyWindow
 
         RecordContainerName.Text = record.Name;
 
-        GeneralFragment.Refresh(record);
         RecordContainerFill.AddChild(
-            CreateCollapsible(Loc.GetString("funky-records-general-info"), GeneralFragment));
+            CreateCollapsible(Loc.GetString("funky-records-general-info"), new RecordsGeneralFragment(record)));
 
         switch (_type)
         {
             case RecordConsoleType.Employment:
             {
-                EmploymentFragment.Refresh(record);
                 RecordContainerFill.AddChild(
-                    CreateCollapsible(Loc.GetString("funky-records-employment-info"), EmploymentFragment));
+                    CreateCollapsible(Loc.GetString("funky-records-employment-info"), new RecordsEmploymentFragment(record)));
                 break;
             }
             case RecordConsoleType.Medical:
             {
-                MedicalFragment.Refresh(record);
                 RecordContainerFill.AddChild(
-                    CreateCollapsible(Loc.GetString("funky-records-medical-info"), MedicalFragment));
+                    CreateCollapsible(Loc.GetString("funky-records-medical-info"), new RecordsMedicalFragment(record)));
                 break;
             }
             case RecordConsoleType.Security:
             {
-                SecurityFragment.Refresh(record, state.SelectedCriminal);
                 RecordContainerFill.AddChild(
-                    CreateCollapsible(Loc.GetString("funky-records-security-info"), SecurityFragment));
+                    CreateCollapsible(Loc.GetString("funky-records-security-info"), new RecordsSecurityFragment(record, state.SelectedCriminal)));
                 break;
             }
             case RecordConsoleType.Admin:
@@ -234,21 +223,17 @@ public sealed partial class GenericRecordsMenu : FancyWindow
     {
         RecordContainerName.Text = record.Name;
 
-        GeneralFragment.Refresh(record);
         RecordContainerFill.AddChild(
-            CreateCollapsible(Loc.GetString("funky-records-general-info"), GeneralFragment));
+            CreateCollapsible(Loc.GetString("funky-records-general-info"), new RecordsGeneralFragment(record)));
 
-        EmploymentFragment.Refresh(record);
         RecordContainerFill.AddChild(
-            CreateCollapsible(Loc.GetString("funky-records-employment-info"), EmploymentFragment));
+            CreateCollapsible(Loc.GetString("funky-records-employment-info"), new RecordsEmploymentFragment(record)));
 
-        MedicalFragment.Refresh(record);
         RecordContainerFill.AddChild(
-            CreateCollapsible(Loc.GetString("funky-records-medical-info"), MedicalFragment));
+            CreateCollapsible(Loc.GetString("funky-records-medical-info"), new RecordsMedicalFragment(record)));
 
-        SecurityFragment.Refresh(record, criminal);
         RecordContainerFill.AddChild(
-            CreateCollapsible(Loc.GetString("funky-records-security-info"), SecurityFragment));
+            CreateCollapsible(Loc.GetString("funky-records-security-info"), new RecordsSecurityFragment(record, criminal)));
     }
 
     // If we are using wizden's class we might as well use their localization.

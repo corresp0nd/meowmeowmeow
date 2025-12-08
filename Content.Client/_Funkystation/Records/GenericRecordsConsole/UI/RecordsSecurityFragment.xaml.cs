@@ -26,7 +26,7 @@ public sealed partial class RecordsSecurityFragment : BoxContainer
     private readonly Dictionary<int, SecurityStatusPrototype> _statusSelectorOptionsReverse = new();
     private static readonly ProtoId<LocalizedDatasetPrototype> ReasonPlaceholders = "CriminalRecordsWantedReasonPlaceholders";
 
-    public RecordsSecurityFragment(FullCharacterRecords? record, CriminalRecord? criminal)
+    public RecordsSecurityFragment(FullCharacterRecords record, CriminalRecord? criminal)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -41,11 +41,10 @@ public sealed partial class RecordsSecurityFragment : BoxContainer
             AddStatusSelect(status);
         }
 
-        if (record != null)
-            SetValue(record, criminal);
+        UpdateState(record, criminal);
     }
 
-    public void Refresh(FullCharacterRecords record, CriminalRecord? criminal)
+    public void UpdateState(FullCharacterRecords record, CriminalRecord? criminal)
     {
         SetValue(record, criminal);
     }
